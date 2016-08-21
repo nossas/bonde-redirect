@@ -12,6 +12,10 @@
 			"Rev": "f931d1ea80ae95a6fc739213cdd9399bd2967fb6"
 		},
 		{
+			"ImportPath": "github.com/gocarina/gocsv",
+			"Rev": "80ac68b8d188bc11f9bc83b372a83bc65d4e5cde"
+		},
+		{
 			"ImportPath": "github.com/golang/protobuf/proto",
 			"Rev": "f592bd283e9ef86337a432eb50e592278c3d534d"
 		},
