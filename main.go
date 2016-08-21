@@ -46,14 +46,12 @@ func main() {
 
 	router.GET("/", func(c *gin.Context) {
 		url := location.Get(c)
-		log.Printf(url.Host)
 
 		for _, redir := range redirects {
-			fmt.Println("Hello", redir.Url_Destination)
+			if url.Host == redir.Url_Origin {
+				c.Redirect(301, redir.Url_Destination)
+			}
 		}
-		// url.Scheme
-		// url.Host
-		// url.Path
 	})
 
 	router.Run(":" + port)
