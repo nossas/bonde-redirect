@@ -1,1 +1,0 @@
-web: simple-redirect-manager
