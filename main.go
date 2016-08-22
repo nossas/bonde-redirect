@@ -47,8 +47,12 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		url := location.Get(c)
 
+		for k, v := range c.Request.Header {
+			log.Println("key:", k, "value:", v)
+		}
+
 		for _, redir := range redirects {
-			fmt.Printf("%v - %v\n", url.Host, redir.Url_Origin)
+			fmt.Printf("%v\n", redir.Url_Origin)
 			if url.Host == redir.Url_Origin {
 				c.Redirect(301, redir.Url_Destination)
 			}
