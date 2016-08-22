@@ -1,11 +1,9 @@
 package main
 
 import (
-	"github.com/drone/gin-location"
 	"github.com/gin-gonic/gin"
 	"log"
 	//	"net/http"
-	"fmt"
 	"github.com/gocarina/gocsv"
 	"os"
 )
@@ -27,11 +25,6 @@ func main() {
 	// router.LoadHTMLGlob("templates/*.tmpl.html")
 	// router.Static("/static", "static")
 
-	// configure to automatically detect scheme and host
-	// - use http when default scheme cannot be determined
-	// - use localhost:8080 when default host cannot be determined
-	router.Use(location.Default())
-
 	redirectsFile, err := os.OpenFile("redirects.csv", os.O_RDWR|os.O_CREATE, os.ModePerm)
 	if err != nil {
 		panic(err)
@@ -45,15 +38,8 @@ func main() {
 	}
 
 	router.GET("/", func(c *gin.Context) {
-		url := location.Get(c)
-
-		for k, v := range c.Request.Header {
-			log.Println("key:", k, "value:", v)
-		}
-
-		fmt.Printf("%v\n", c.Request)
 		for _, redir := range redirects {
-			if url.Host == redir.Url_Origin {
+			if c.Request.Host == redir.Url_Origin {
 				c.Redirect(301, redir.Url_Destination)
 			}
 		}
