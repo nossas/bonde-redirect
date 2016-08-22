@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	//	"net/http"
+	"fmt"
 	"github.com/gocarina/gocsv"
 	"os"
 )
@@ -47,6 +48,7 @@ func main() {
 		url := location.Get(c)
 
 		for _, redir := range redirects {
+			fmt.Printf("%v - %v\n", url.Host, redir.Url_Origin)
 			if url.Host == redir.Url_Origin {
 				c.Redirect(301, redir.Url_Destination)
 			}
