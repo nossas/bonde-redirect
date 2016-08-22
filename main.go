@@ -5,7 +5,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	//	"net/http"
-	"fmt"
 	"github.com/gocarina/gocsv"
 	"os"
 )
