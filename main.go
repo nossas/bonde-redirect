@@ -52,8 +52,8 @@ func main() {
 		}
 
 		for _, redir := range redirects {
-			fmt.Printf("%v\n", redir.Url_Origin)
 			if url.Host == redir.Url_Origin {
+				fmt.Printf("%v - %v\n", c.Request, redir.Url_Origin)
 				c.Redirect(301, redir.Url_Destination)
 			}
 		}
