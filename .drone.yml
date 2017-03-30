@@ -2,6 +2,8 @@ pipeline:
   build:
     image: golang
     commands:
+      - go get github.com/tools/godep
+      - godep restore
       - go build
       - go test
   publish:
