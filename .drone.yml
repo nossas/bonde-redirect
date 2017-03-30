@@ -17,7 +17,6 @@ pipeline:
     image: appleboy/drone-ssh
     host: redirect.reboo.org
     username: ubuntu
-    key: ${SSH_KEY}
     port: 22
     script:
       - sudo docker pull nossas/bonde-redirect:latest
