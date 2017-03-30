@@ -15,7 +15,7 @@ pipeline:
       event: [ tag ]
   deployment:
     image: appleboy/drone-ssh
-    host: redirect.bonde.org
+    host: redirect.reboo.org
     username: ubuntu
     key: ${SSH_KEY}
     script:
