@@ -9,6 +9,8 @@ pipeline:
   publish:
     image: plugins/docker
     repo: nossas/bonde-redirect
+    username: lpirola
+    password: ${DOCKER_PASSWORD}
     tags: latest
     when:
       event: [ tag ]
