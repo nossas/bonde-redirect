@@ -16,3 +16,7 @@ pipeline:
     image: plugins/slack
     webhook: https://hooks.slack.com/services/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
     channel: n_tech
+    when:
+      event: [ push, tag, deployment, pull_request ]
+      status: [ success, failure ]
+
