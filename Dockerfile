@@ -1,2 +1,3 @@
-FROM golang:1.7-onbuild
-ENV PORT 5000
+FROM golang:onbuild
+VOLUME ["/go/src/app"]
+EXPOSE 5000

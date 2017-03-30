@@ -15,8 +15,8 @@ pipeline:
       event: [ tag ]
   deployment:
     image: appleboy/drone-ssh
-    host: foo.com
-    username: root
+    host: redirect.bonde.org
+    username: ubuntu
     key: ${SSH_KEY}
     script:
       - sudo docker pull nossas/bonde-redirect:latest
