@@ -15,13 +15,13 @@ pipeline:
       event: tag
   deployment:
     image: appleboy/drone-ssh
-    host: redirect.reboo.org
+    host: redirect.bonde.org
     username: ubuntu
     port: 22
     script:
       - sudo docker pull nossas/bonde-redirect:latest
-      - sudo docker tag nossas/bonde-redirect:latest dokku/0-redirect:latest
-      - dokku tags:deploy 0-redirect latest
+      - sudo docker tag nossas/bonde-redirect:latest dokku/bonde-redirect:latest
+      - dokku tags:deploy cache-redirect latest
     when:
       status: success
       event: tag
