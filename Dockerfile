@@ -1,4 +1,10 @@
-FROM golang:onbuild
-ENV PORT 5000
-VOLUME ["/go/src/app"]
-EXPOSE 5000
+FROM golang
+
+WORKDIR /go/src/github.com/bonde-redirect
+COPY . .
+
+RUN go get github.com/tools/godep
+RUN godep restore
+RUN go install github.com/bonde-redirect
+
+ENTRYPOINT /go/bin/bonde-redirect
