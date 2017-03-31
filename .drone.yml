@@ -21,7 +21,7 @@ pipeline:
     script:
       - sudo docker pull nossas/bonde-redirect:latest
       - sudo docker tag nossas/bonde-redirect:latest dokku/bonde-redirect:latest
-      - dokku tags:deploy cache-redirect latest
+      - dokku tags:deploy bonde-redirect latest
     when:
       status: success
       event: tag
