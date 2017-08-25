@@ -28,7 +28,7 @@ pipeline:
       branch: [hotfix-*, release-*, feature-*, develop]
   deployment:
     image: appleboy/drone-ssh
-    host: ssh.bonde.org
+    host: redirect.bonde.org
     username: ubuntu
     secrets: [ ssh_key ]
     port: 22
