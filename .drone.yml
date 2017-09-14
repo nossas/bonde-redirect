@@ -8,7 +8,8 @@ pipeline:
       - go test
     when:
       event: [push, tag]
-  publish:
+
+  publish-docker-production:
     image: plugins/docker
     repo: nossas/bonde-redirect
     secrets: [ docker_username, docker_password ]
@@ -17,7 +18,8 @@ pipeline:
     when:
       status: success
       event: tag
-  publish-staging:
+
+  publish-docker-staging:
     image: plugins/docker
     repo: nossas/bonde-redirect
     secrets: [ docker_username, docker_password ]
@@ -26,7 +28,8 @@ pipeline:
     when:
       status: success
       branch: [hotfix-*, release-*, feature-*, develop]
-  deployment:
+
+  deploy-dokku-production:
     image: appleboy/drone-ssh
     host: ssh.bonde.org
     username: ubuntu
@@ -39,19 +42,19 @@ pipeline:
     when:
       status: success
       event: tag
-  deployment-staging:
-    image: appleboy/drone-ssh
-    host: staging.bonde.org
-    username: ubuntu
-    secrets: [ ssh_key ]
-    port: 22
-    script:
-      - sudo docker pull nossas/bonde-redirect:${DRONE_BRANCH}
-      - sudo docker tag nossas/bonde-redirect:${DRONE_BRANCH} dokku/redirect:latest
-      - dokku tags:deploy redirect latest
+
+  deploy-rancher-staging:
+    image: peloton/drone-rancher
+    url: http://cluster.bonde.org
+    service: staging/redirect
+    docker_image: nossas/bonde-redirect:${DRONE_BRANCH}
+    timeout: 360
+    confirm: true
+    secrets: [ rancher_access_key, rancher_secret_key ]
     when:
       status: success
       branch: [hotfix-*, release-*, feature-*, develop]
+
   notify:
     image: plugins/slack
     webhook: https://hooks.slack.com/services/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
