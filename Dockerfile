@@ -4,7 +4,7 @@ RUN set -x \
     && apt-get update \
     && apt-get upgrade -y \
     && echo "=> Needed packages:" \
-    && apt-get install -y --no-install-recommends apt-utils curl ca-certificates tar openssl xz-utils s3cmd \
+    && apt-get install -y --no-install-recommends apt-utils curl ca-certificates tar openssl xz-utils \
     && echo "=> Configuring and installing timezone (${TIMEZONE}):" \
     && echo ${TIMEZONE} > /etc/timezone \
     && dpkg-reconfigure -f noninteractive tzdata \
