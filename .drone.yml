@@ -24,10 +24,10 @@ pipeline:
     repo: nossas/bonde-redirect
     secrets: [ docker_username, docker_password ]
     tags:
-      - ${DRONE_BRANCH}
+      - ${DRONE_BRANCH/\//-}
     when:
       status: success
-      branch: [hotfix-*, release-*, feature-*, develop]
+      branch: [hotfix/*, release/*, feature/*, develop]
 
   deploy-rancher-production:
     image: peloton/drone-rancher
