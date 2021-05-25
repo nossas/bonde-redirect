@@ -1,4 +1,4 @@
-FROM golang:onbuild
+FROM golang:1.13
 
 ENV CACHE_INTERVAL 600
 

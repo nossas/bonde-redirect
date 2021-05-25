@@ -1,4 +1,4 @@
-FROM golang
+FROM golang:1.13
 ARG TIMEZONE="America/Sao_Paulo"
 RUN set -x \
     && apt-get update \
