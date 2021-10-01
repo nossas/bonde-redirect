@@ -27,7 +27,7 @@ pipeline:
       - ${DRONE_BRANCH}
     when:
       status: success
-      branch: [hotfix-*, release-*, feature-*, develop]
+      branch: [hotfix/*, release/*, feature/*, develop]
 
   deploy-rancher-production:
     image: peloton/drone-rancher
@@ -51,7 +51,7 @@ pipeline:
     secrets: [ rancher_access_key, rancher_secret_key ]
     when:
       status: success
-      branch: [hotfix-*, release-*, feature-*, develop]
+      branch: [hotfix/*, release/*, feature/*, develop]
 
   notify:
     image: plugins/slack
